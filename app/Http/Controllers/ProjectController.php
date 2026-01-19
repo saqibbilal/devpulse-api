@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -11,7 +12,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        // We sort by 'order' so you can pick which project shows first on your CV
+        return Project::where('is_featured', true)
+            ->orderBy('order', 'asc')
+            ->get();
     }
 
     /**
@@ -25,9 +29,9 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        return $project;
     }
 
     /**
