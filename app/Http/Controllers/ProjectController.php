@@ -31,9 +31,13 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show($slug)
     {
-        return $project;
+        // We search by 'slug' instead of 'id' to match your Next.js dynamic route
+        // firstOrFail() automatically returns a 404 if the project isn't found
+        $project = Project::where('slug', $slug)->firstOrFail();
+
+        return new ProjectResource($project);
     }
 
     /**
