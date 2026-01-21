@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create 10 varied projects automatically
-        Project::factory()->count(10)->create();
+        $this->call([
+            ProjectSeeder::class,
+        ]);
     }
 }

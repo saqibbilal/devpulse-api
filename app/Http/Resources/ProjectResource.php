@@ -25,6 +25,9 @@ class ProjectResource extends JsonResource
                 ? $this->tech_stack
                 : json_decode($this->tech_stack, true) ?? [],
             'created_at' => $this->created_at->format('Y-m-d'),
+            // Use 'whenLoaded' to only include details if we specifically asked for them
+            // This keeps your Home Page API response small and fast!
+            'detail' => $this->whenLoaded('detail'),
         ];
     }
 }
