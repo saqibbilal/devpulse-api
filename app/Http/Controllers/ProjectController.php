@@ -33,9 +33,8 @@ class ProjectController extends Controller
      */
     public function show($slug)
     {
-        // We search by 'slug' instead of 'id' to match your Next.js dynamic route
-        // firstOrFail() automatically returns a 404 if the project isn't found
-        $project = Project::where('slug', $slug)->firstOrFail();
+        // Adding 'with' is what makes whenLoaded() return true in the Resource
+        $project = Project::with('detail')->where('slug', $slug)->firstOrFail();
 
         return new ProjectResource($project);
     }
