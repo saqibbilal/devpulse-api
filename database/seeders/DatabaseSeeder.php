@@ -16,9 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create 10 varied projects automatically
         $this->call([
-            ProjectSeeder::class,
+            ResumeSeeder::class,
         ]);
     }
 }
