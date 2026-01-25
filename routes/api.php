@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SkillController;
-use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\ContactController;
 
 
 Route::apiResource('projects', ProjectController::class)->only(['index', 'show']);

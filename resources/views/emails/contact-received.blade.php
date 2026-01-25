@@ -1,12 +1,17 @@
 <x-mail::message>
-# Introduction
+    # New Inquiry from {{ $name }}
 
-The body of your message.
+    You have received a new message through your portfolio contact form.
 
-<x-mail::button :url="''">
-Button Text
+    **From:** {{ $name }} ({{ $email }})
+
+    **Message:**
+<x-mail::panel>
+{{ $body }}
+</x-mail::panel>
+<x-mail::button :url="'mailto:' . $email">
+Reply to {{ $name }}
 </x-mail::button>
-
-Thanks,<br>
+Best regards,<br>
 {{ config('app.name') }}
 </x-mail::message>

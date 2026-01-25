@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Mail;
 
+use App\Models\Contact;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -13,12 +12,15 @@ class ContactReceived extends Mailable
 {
     use Queueable, SerializesModels;
 
+    // We define the property so it's accessible within the class
+    public Contact $contact;
+
     /**
-     * Create a new message instance.
+     * Pass the Contact model into the constructor
      */
-    public function __construct()
+    public function __construct(Contact $contact)
     {
-        //
+        $this->contact = $contact;
     }
 
     /**
@@ -27,7 +29,9 @@ class ContactReceived extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Received',
+        // Use the sender's name in the subject for better visibility
+            subject: 'Portfolio Inquiry: ' . $this->contact->name,
+            replyTo: [$this->contact->email], // Allows you to hit 'Reply' in your email client
         );
     }
 
@@ -39,18 +43,13 @@ class ContactReceived extends Mailable
         return new Content(
             markdown: 'emails.contact-received',
             with: [
-                'name' => $this->contact->name,
-                'email' => $this->contact->email,
-                'body' => $this->contact->message,
+                'name'    => $this->contact->name,
+                'email'   => $this->contact->email,
+                'body' => $this->contact->message, // Changed 'body' to 'message' to match your DB column
             ],
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
         return [];

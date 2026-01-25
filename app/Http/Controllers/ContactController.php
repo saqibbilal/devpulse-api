@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
@@ -15,7 +15,7 @@ class ContactController extends Controller
         $validated = $request->validate([
             'name'    => 'required|string|max:255',
             'email'   => 'required|email|max:255',
-            'message' => 'required|string|min:10',
+            'body' => 'required|string|min:10',
         ]);
 
         // Store in DB
@@ -24,7 +24,7 @@ class ContactController extends Controller
             'ip_address' => $request->ip(),
         ]);
 
-        // Send Email (We will create the Mailable next)
+        // Send Email
         Mail::to(config('mail.from.address'))->send(new ContactReceived($contact));
 
         return response()->json([
