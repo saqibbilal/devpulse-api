@@ -14,23 +14,22 @@ class ResumeSeeder extends Seeder
         // 1. POPULATE SKILLS (With Order field)
         $skills = [
             // Backend
-            ['name' => 'PHP 8.3 (Expert)', 'category' => 'backend', 'order' => 1],
+            ['name' => 'PHP 8', 'category' => 'backend', 'order' => 1],
             ['name' => 'Laravel 11 (Headless)', 'category' => 'backend', 'order' => 2],
             ['name' => 'RESTful API Design', 'category' => 'backend', 'order' => 3],
             ['name' => 'PostgreSQL & MySQL', 'category' => 'backend', 'order' => 4],
-            ['name' => 'Redis & Memcached', 'category' => 'backend', 'order' => 5],
 
             // Frontend
-            ['name' => 'TypeScript (Enterprise)', 'category' => 'frontend', 'order' => 1],
+            ['name' => 'TypeScript', 'category' => 'frontend', 'order' => 1],
             ['name' => 'Next.js 15', 'category' => 'frontend', 'order' => 2],
             ['name' => 'React', 'category' => 'frontend', 'order' => 3],
             ['name' => 'Tailwind CSS', 'category' => 'frontend', 'order' => 4],
 
             // Tools
-            ['name' => 'AWS (App Runner, S3, RDS)', 'category' => 'tools', 'order' => 1],
+            ['name' => 'AWS (ECS, ECR, RDS)', 'category' => 'tools', 'order' => 1],
             ['name' => 'Docker & Docker Compose', 'category' => 'tools', 'order' => 2],
             ['name' => 'GitHub Actions (CI/CD)', 'category' => 'tools', 'order' => 3],
-            ['name' => 'TDD (PHPUnit/Vitest)', 'category' => 'tools', 'order' => 4],
+            ['name' => 'TDD (PHPUnit/Pest)', 'category' => 'tools', 'order' => 4],
         ];
 
         foreach ($skills as $skill) {
