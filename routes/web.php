@@ -13,3 +13,11 @@ Route::get('/mail-preview', function () {
 
     return new ContactReceived($contact);
 });
+
+Route::get('/', function () {
+    return response()->json([
+        'status' => 'online',
+        'framework' => 'Laravel 11',
+        'environment' => app()->environment()
+    ]);
+});
