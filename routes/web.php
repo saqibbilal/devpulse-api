@@ -17,7 +17,7 @@ Route::get('/mail-preview', function () {
 Route::get('/', function () {
     return response()->json([
         'status' => 'online',
-        'framework' => 'Laravel 11',
+        'framework' => 'Laravel 12',
         'environment' => app()->environment()
     ]);
 });

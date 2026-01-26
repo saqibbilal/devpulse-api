@@ -36,47 +36,59 @@ class ResumeSeeder extends Seeder
             Skill::updateOrCreate(['name' => $skill['name']], $skill);
         }
 
-        // 2. POPULATE PROJECTS (Using your specific Model fields)
-        $projects = [
-            [
-                'title' => 'Decoupled Ecosystem Architecture',
-                'description' => 'Architected a headless Laravel 11 API with a Next.js 15 frontend using strict TypeScript enforcement for enterprise standards[cite: 50, 51].',
-                'tech_stack' => ['Laravel 11', 'Next.js 15', 'TypeScript', 'Tailwind CSS'],
-                'is_featured' => true,
-                'order' => 1,
-                'thumbnail_url' => 'https://via.placeholder.com/600x400?text=Decoupled+Architecture'
-            ],
-            [
-                'title' => 'Financial Integration Engine',
-                'description' => 'Modernized payment infrastructure using Stripe API and Laravel Cashier for automated billing and invoicing logic[cite: 58, 101].',
-                'tech_stack' => ['Stripe API', 'Laravel Cashier', 'PHP 8.3', 'Docker'],
-                'is_featured' => true,
-                'order' => 2,
-                'thumbnail_url' => 'https://via.placeholder.com/600x400?text=Financial+Systems'
-            ],
-            [
-                'title' => 'Fraud Detection & Optimization',
-                'description' => 'Reduced page load times by 40% through MySQL indexing and engineered cookie-based tracking to prevent fraudulent accounts[cite: 62, 63].',
-                'tech_stack' => ['MySQL', 'PHP', 'Security Engineering', 'Performance Tuning'],
-                'is_featured' => false,
-                'order' => 3,
-                'thumbnail_url' => 'https://via.placeholder.com/600x400?text=Performance+Optimization'
-            ],
-            [
-                'title' => 'Real Estate Sync Service',
-                'description' => 'Integrated complex third-party REST APIs including Google Maps and Calendar for real-estate data synchronization[cite: 68, 117].',
-                'tech_stack' => ['REST APIs', 'AWS S3', 'Laravel', 'Google Maps API'],
-                'is_featured' => false,
-                'order' => 4,
-                'thumbnail_url' => 'https://via.placeholder.com/600x400?text=Cloud+Integrations'
-            ]
-        ];
+        // 1. Create the specific "DevPulse" project manually
+        $devPulse = Project::create([
+            'title' => 'DevPulse',
+            'slug' => 'devpulse',
+            'description' => 'A production-grade full-stack ecosystem leveraging a decoupled architecture and containerized cloud deployment.',
+            'thumbnail_url' => 'https://via.placeholder.com/600x400?text=DevPulse+Architecture', // Replace with a screenshot later!
+            'tech_stack' => ['Laravel 12', 'PHP 8.4', 'Next.js 15', 'PostgreSQL', 'Docker', 'AWS ECS', 'Tailwind CSS'],
+            'is_featured' => true,
+            'order' => 1,
+        ]);
 
-        foreach ($projects as $project) {
-            Project::updateOrCreate(
-                ['title' => $project['title']],
-                array_merge($project, ['slug' => Str::slug($project['title'])])
-            );
-        }
+        $devPulse->detail()->create([
+            'problem_statement' => 'Many developer portfolios lack real-world infrastructure, failing to demonstrate the ability to manage complex deployment pipelines, containerization, and cloud-native databases.',
+            'solution_approach' => 'Built a high-performance system using Laravel 12 as a headless API and Next.js 15. The backend is containerized via a custom multi-stage Docker build (Alpine Linux + Nginx + PHP 8.4-FPM) and deployed to AWS ECS Fargate, supported by an RDS PostgreSQL instance.',
+            'repository_links' => [
+                'frontend' => 'https://github.com/saqibbilal/devpulse-ui',
+                'backend' => 'https://github.com/saqibbilal/devpulse-api'
+            ],
+            'feature_highlights' => [
+                'Multi-stage Docker Builds (Optimized < 200MB)',
+                'AWS ECR/ECS Fargate Deployment Pipeline',
+                'Headless CMS Architecture with JSONB Metadata',
+                'Automated Deployment via Idempotent Shell Scripts',
+                'Process Management with Supervisor in Alpine Linux'
+            ],
+            'live_url' => 'https://devpulse.ca'
+        ]);
+
+        // 2. Create the TaskFlow project manually
+        $taskFlow = Project::create([
+            'title' => 'TaskFlow',
+            'slug' => 'taskflow',
+            'description' => 'A containerized full-stack ecosystem demonstrating high-performance communication between a headless Laravel API and a Next.js SSR frontend.',
+            'thumbnail_url' => 'https://via.placeholder.com/600x400?text=TaskFlow+Cloud+Architecture',
+            'tech_stack' => ['Laravel 12', 'PHP 8.4', 'Next.js 15', 'PostgreSQL', 'Docker', 'AWS App Runner', 'AWS ECR'],
+            'is_featured' => true,
+            'order' => 2,
+        ]);
+
+        $taskFlow->detail()->create([
+            'problem_statement' => 'Bridging the gap between traditional PHP backends and modern JavaScript frontends often results in deployment friction, especially regarding environment variables and SSR networking.',
+            'solution_approach' => 'Architected a monorepo utilizing Docker multi-stage builds. Implemented Next.js Standalone mode to optimize for cloud deployment on AWS App Runner. The backend serves as a headless API, while the frontend handles complex server-side data fetching with absolute URL resolution.',
+            'repository_links' => [
+                'monorepo' => 'https://github.com/saqibbilal/taskflow',
+            ],
+            'feature_highlights' => [
+                'Next.js Standalone Mode Image Optimization',
+                'Docker Build-Arg Variable Injection',
+                'Asynchronous UI Updates with useTransition',
+                'AWS App Runner & ECR Deployment Pipeline',
+                'Automated Database Migrations via RDS'
+            ],
+            'live_url' => 'https://your-app-runner-url.aws.com' // You can update this to your resume link
+        ]);
     }
 }

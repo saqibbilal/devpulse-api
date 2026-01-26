@@ -40,3 +40,6 @@ else
     echo "❌ ERROR: The push failed."
     exit 1
 fi
+
+# this line will only work for the cluster, do not put it in generic deploy.sh
+aws ecs update-service --cluster devpulse-cluster --service devpulse-api-service --force-new-deployment
