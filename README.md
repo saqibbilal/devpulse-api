@@ -1,43 +1,51 @@
-🏗 System Architecture
-DevPulse is built using a modern, decoupled architecture designed for high availability, security, and scalability. It separates the concerns of data management (Backend) from the user experience (Frontend).
+# 🚀 DevPulse API
 
-1. High-Level Stack
-   Backend: Laravel 12 (PHP 8.4) running in a Dockerized environment.
+The high-performance, containerized backend powering the DevPulse ecosystem. Built with **Laravel 12** and orchestrated on **AWS**.
 
-Frontend: Next.js (React) deployed on Vercel.
+---
 
-Database: Managed PostgreSQL (AWS RDS).
+## 🏗 System Architecture
 
-Cloud Infrastructure: Amazon Web Services (AWS).
+DevPulse follows a **decoupled architecture**, separating the data layer from the user experience for maximum scalability.
 
-2. Infrastructure (AWS)
-   The backend is hosted on AWS using a containerized workflow to ensure environment parity between development and production.
+### 1️⃣ Application Stack
+* **Language:** PHP 8.4 (Latest)
+* **Framework:** Laravel 12
+* **Runtime:** Dockerized Environment
+* **Database:** PostgreSQL (AWS RDS)
 
-Compute: AWS ECS (Fargate) manages the lifecycle of the Docker containers, providing a serverless experience with automatic scaling.
+---
 
-Traffic Management: An Application Load Balancer (ALB) handles SSL termination and intelligently routes traffic based on host headers (e.g., api.devpulse.mbilal.ca).
+## ☁️ Cloud Infrastructure (AWS)
 
-Security: * SSL/TLS: Traffic is encrypted end-to-end via AWS Certificate Manager (ACM) using a multi-level wildcard certificate.
+This project is engineered to handle production-grade traffic using a serverless-first approach on Amazon Web Services.
 
-Networking: Resources are isolated within a custom VPC with strict Security Group rules, ensuring only the ALB can communicate with the application containers.
+### **Compute & Orchestration**
+* **AWS ECS (Fargate):** Manages container lifecycles without the overhead of managing EC2 instances.
+* **Elastic Container Registry (ECR):** Private storage for production Docker images.
 
-CI/CD: Automated deployment script (deploy.sh) handles the build process, ECR image pushing, and ECS service updates.
+### **Networking & Security**
+* **Application Load Balancer (ALB):** Handles SSL termination and intelligent routing.
+* **ACM (Certificate Manager):** Multi-level wildcard certificates securing `mbilal.ca` and its subdomains.
+* **VPC Isolation:** Strict security groups ensure the database is never exposed to the public internet.
 
-3. Data & Storage
-   RDS: A managed PostgreSQL instance handles persistent data with automated backups.
+---
 
-S3: (Optional/Planned) Used for storing project assets and screenshots securely.
+## 🛠 DevOps & Automation
 
-4. Domain & DNS Strategy
-   The project utilizes a unified branding strategy across multiple subdomains:
+We prioritize **Developer Experience (DX)** and consistent deployments.
 
-mbilal.ca: Main portfolio frontend (Vercel).
+* **Automated Deployments:** A custom `deploy.sh` script automates the build, push, and service update cycle.
+* **Zero-Downtime:** ECS handles rolling updates, ensuring the API is always available during new releases.
 
-api.devpulse.mbilal.ca: Project-specific backend API (AWS).
 
-How to use this:
-Open your README.md.
 
-Paste this under your main project title.
+---
 
-Commit Message: docs: add detailed system architecture and infrastructure overview
+## 🔗 Environment Links
+
+| Resource | URL |
+| :--- | :--- |
+| **Main Portfolio** | [mbilal.ca](https://mbilal.ca) |
+| **API Endpoint** | [api.devpulse.mbilal.ca](https://api.devpulse.mbilal.ca) |
+| **API Docs** | `/api/documentation` |
