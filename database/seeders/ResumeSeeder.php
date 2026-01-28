@@ -41,8 +41,8 @@ class ResumeSeeder extends Seeder
             'title' => 'DevPulse',
             'slug' => 'devpulse',
             'description' => 'A production-grade full-stack ecosystem leveraging a decoupled architecture and containerized cloud deployment.',
-            'thumbnail_url' => 'https://via.placeholder.com/600x400?text=DevPulse+Architecture', // Replace with a screenshot later!
-            'tech_stack' => ['Laravel 12', 'PHP 8.4', 'Next.js 15', 'PostgreSQL', 'Docker', 'AWS ECS', 'Tailwind CSS'],
+            'thumbnail_url' => 'https://devpulse-assets.s3.us-east-1.amazonaws.com/DevPulse.png', // Replace with a screenshot later!
+            'tech_stack' => ['Laravel 12', 'PHP 8.4', 'Next.js 15', 'PostgreSQL', 'Docker', 'AWS ECS'],
             'is_featured' => true,
             'order' => 1,
         ]);
@@ -61,7 +61,7 @@ class ResumeSeeder extends Seeder
                 'Automated Deployment via Idempotent Shell Scripts',
                 'Process Management with Supervisor in Alpine Linux'
             ],
-            'live_url' => 'https://devpulse.ca'
+            'live_url' => 'https://mbilal.ca'
         ]);
 
         // 2. Create the TaskFlow project manually
@@ -69,8 +69,8 @@ class ResumeSeeder extends Seeder
             'title' => 'TaskFlow',
             'slug' => 'taskflow',
             'description' => 'A containerized full-stack ecosystem demonstrating high-performance communication between a headless Laravel API and a Next.js SSR frontend.',
-            'thumbnail_url' => 'https://via.placeholder.com/600x400?text=TaskFlow+Cloud+Architecture',
-            'tech_stack' => ['Laravel 12', 'PHP 8.4', 'Next.js 15', 'PostgreSQL', 'Docker', 'AWS App Runner', 'AWS ECR'],
+            'thumbnail_url' => 'https://devpulse-assets.s3.us-east-1.amazonaws.com/TaskFlowBright.png',
+            'tech_stack' => ['Laravel 12', 'PHP 8.4', 'Next.js 15', 'PostgreSQL', 'Docker', 'AWS App Runner'],
             'is_featured' => true,
             'order' => 2,
         ]);
@@ -88,7 +88,7 @@ class ResumeSeeder extends Seeder
                 'AWS App Runner & ECR Deployment Pipeline',
                 'Automated Database Migrations via RDS'
             ],
-            'live_url' => 'https://your-app-runner-url.aws.com' // You can update this to your resume link
+            'live_url' => 'https://taskflow-frontend-beta.vercel.app/' // You can update this to your resume link
         ]);
     }
 }
