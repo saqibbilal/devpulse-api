@@ -45,7 +45,7 @@ class ContactReceived extends Mailable
             with: [
                 'name'    => $this->contact->name,
                 'email'   => $this->contact->email,
-                'body' => $this->contact->message, // Changed 'body' to 'message' to match your DB column
+                'message_body' => $this->contact->body, // Changed 'body' to 'message' to match your DB column
             ],
         );
     }

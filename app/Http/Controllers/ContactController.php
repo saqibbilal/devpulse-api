@@ -25,7 +25,7 @@ class ContactController extends Controller
         ]);
 
         // Send Email
-        Mail::to(config('mail.from.address'))->send(new ContactReceived($contact));
+        Mail::to("saqib_bilal786@yahoo.com")->send(new ContactReceived($contact));
 
         return response()->json([
             'status'  => 'success',

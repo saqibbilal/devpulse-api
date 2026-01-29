@@ -7,7 +7,7 @@
 
     **Message:**
 <x-mail::panel>
-{{ $body }}
+{{ $message_body }}
 </x-mail::panel>
 <x-mail::button :url="'mailto:' . $email">
 Reply to {{ $name }}
