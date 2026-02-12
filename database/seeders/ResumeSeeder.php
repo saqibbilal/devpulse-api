@@ -14,22 +14,25 @@ class ResumeSeeder extends Seeder
         // 1. POPULATE SKILLS (With Order field)
         $skills = [
             // Backend
-            ['name' => 'PHP 8', 'category' => 'backend', 'order' => 1],
-            ['name' => 'Laravel 11 (Headless)', 'category' => 'backend', 'order' => 2],
-            ['name' => 'RESTful API Design', 'category' => 'backend', 'order' => 3],
-            ['name' => 'PostgreSQL & MySQL', 'category' => 'backend', 'order' => 4],
+            ['name' => 'PHP 8.5+', 'category' => 'backend', 'order' => 1],
+            ['name' => 'Laravel 12 (Headless)', 'category' => 'backend', 'order' => 2],
+            ['name' => 'AI Integration (RAG & Gemini)', 'category' => 'backend', 'order' => 3],
+            ['name' => 'PostgreSQL (JSONB & pgvector)', 'category' => 'backend', 'order' => 4],
+            ['name' => 'RESTful API Design', 'category' => 'backend', 'order' => 5],
 
             // Frontend
-            ['name' => 'TypeScript', 'category' => 'frontend', 'order' => 1],
-            ['name' => 'Next.js 15', 'category' => 'frontend', 'order' => 2],
-            ['name' => 'React', 'category' => 'frontend', 'order' => 3],
-            ['name' => 'Tailwind CSS', 'category' => 'frontend', 'order' => 4],
+            ['name' => 'Next.js 15 (App Router)', 'category' => 'frontend', 'order' => 1],
+            ['name' => 'TanStack Query (React Query)', 'category' => 'frontend', 'order' => 2],
+            ['name' => 'TypeScript', 'category' => 'frontend', 'order' => 3],
+            ['name' => 'Axios', 'category' => 'frontend', 'order' => 4],
+            ['name' => 'Tailwind CSS', 'category' => 'frontend', 'order' => 5],
+            ['name' => 'React', 'category' => 'frontend', 'order' => 6],
 
-            // Tools
-            ['name' => 'AWS (ECS, ECR, RDS)', 'category' => 'tools', 'order' => 1],
-            ['name' => 'Docker & Docker Compose', 'category' => 'tools', 'order' => 2],
+            // Tools & DevOps: Containerization and AWS first
+            ['name' => 'AWS (ECS Fargate, ECR, RDS)', 'category' => 'tools', 'order' => 1],
+            ['name' => 'Docker & Containerization', 'category' => 'tools', 'order' => 2],
             ['name' => 'GitHub Actions (CI/CD)', 'category' => 'tools', 'order' => 3],
-            ['name' => 'TDD (PHPUnit/Pest)', 'category' => 'tools', 'order' => 4],
+            ['name' => 'TDD (Pest & PHPUnit)', 'category' => 'tools', 'order' => 4],
         ];
 
         foreach ($skills as $skill) {
@@ -89,6 +92,35 @@ class ResumeSeeder extends Seeder
                 'Automated Database Migrations via RDS'
             ],
             'live_url' => 'https://taskflow-frontend-beta.vercel.app/' // You can update this to your resume link
+        ]);
+
+        // 3. NEW: Keepr (AI Note Vault)
+        $keepr = Project::create([
+            'title' => 'Keepr',
+            'slug' => 'keepr',
+            'description' => 'A sophisticated AI-powered document vault implementing RAG (Retrieval-Augmented Generation) and vector embeddings to provide semantic search and intelligent insights for personal notes.',
+            'thumbnail_url' => 'https://devpulse-assets.s3.us-east-1.amazonaws.com/keepr.png',
+            'tech_stack' => ['Laravel 12', 'Next.js 15', 'Gemini AI', 'TanStack Query', 'Axios', 'AWS:ECS/Fargate'],
+            'is_featured' => true,
+            'order' => 3,
+        ]);
+
+        $keepr->detail()->create([
+            'problem_statement' => 'Standard note-taking applications act as static repositories, requiring manual organization and lacking the ability to provide deep context or cross-document intelligence.',
+            'solution_approach' => 'Architected a RAG pipeline using Google Gemini AI and vector embeddings to transform raw notes into a searchable knowledge base. The system utilizes a headless Laravel 12 backend for AI processing and TanStack Query on the frontend to manage complex server-state synchronization. Deployment leverages a high-availability AWS ECS sidecar architecture.',
+            'repository_links' => [
+                'frontend' => 'https://github.com/saqibbilal/vault-ui',
+                'backend' => 'https://github.com/saqibbilal/vault-api'
+            ],
+            'feature_highlights' => [
+                'RAG (Retrieval-Augmented Generation) for context-aware document insights and summaries.',
+                'Semantic Search capabilities powered by vector embeddings for meaning-based retrieval.',
+                'Multi-container sidecar pattern (Nginx + PHP-FPM) on AWS ECS Fargate.',
+                'TanStack Query for robust client-side state management and background synchronization.',
+                'Secure PostgreSQL schema with JSONB support for hybrid structured/unstructured data.',
+                'AWS ALB with Host Header routing and SSL termination for secure cross-origin communication.'
+            ],
+            'live_url' => 'https://keepr-xi.vercel.app/'
         ]);
     }
 }
