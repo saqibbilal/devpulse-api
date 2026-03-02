@@ -22,6 +22,7 @@ return [
     'allowed_origins' => [
         'https://mbilal.ca',
         'https://www.mbilal.ca',
+        'https://devpulse-frontend.vercel.app',
         'http://localhost:3000',
     ],
 
