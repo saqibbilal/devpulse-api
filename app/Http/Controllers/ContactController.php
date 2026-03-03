@@ -29,7 +29,7 @@ class ContactController extends Controller
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'Message received! I will get back to you soon.'
+            'message' => 'I will get back to you soon.'
         ]);
     }
 }
