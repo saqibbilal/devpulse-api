@@ -1,9 +1,14 @@
 @component('mail::message')
-    # New Contact Form Submission
+    # New Portfolio Message
 
-    **Name:** {{ $formData['name'] }}
-    **Email:** {{ $formData['email'] }}
+    **From:** {{ $name }} ({{ $email }})
 
-    **Message:** {{ $formData['message'] }}
+    **Message:** {{ $body }}
 
+    @component('mail::button', ['url' => 'mailto:' . $email])
+        Reply to {{ $name }}
+    @endcomponent
+
+    Thanks,<br>
+    {{ config('app.name') }}
 @endcomponent
