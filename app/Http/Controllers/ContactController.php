@@ -2,30 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreContactRequest;
+use App\Mail\ContactMessage;
 use App\Models\Contact;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactReceived;
 
 class ContactController extends Controller
 {
-    public function store(Request $request)
+    public function send(StoreContactRequest $request)
     {
-        $validated = $request->validate([
-            'name'    => 'required|string|max:255',
-            'email'   => 'required|email|max:255',
-            'body' => 'required|string|min:10',
-        ]);
+        // The code only reaches this point if validation passed!
 
-        // Store in DB
+        // 1. Get ONLY the validated data
+        $validated = $request->validated();
+
+        // 2. Persist to DB
         $contact = Contact::create([
-            ...$validated,
+            'name'       => $validated['name'],
+            'email'      => $validated['email'],
+            'body'       => $validated['message'], // Mapping 'message' to 'body'
             'ip_address' => $request->ip(),
         ]);
 
-        // Send Email
-        Mail::to("saqib_bilal786@yahoo.com")->send(new ContactReceived($contact));
+        // 3. Send the Email
+        Mail::to('saqib_bilal786@yahoo.com')->send(new ContactMessage($contact));
 
         return response()->json([
             'status'  => 'success',
