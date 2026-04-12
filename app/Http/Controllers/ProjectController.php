@@ -34,7 +34,7 @@ class ProjectController extends Controller
     public function show($slug)
     {
         // Adding 'with' is what makes whenLoaded() return true in the Resource
-        $project = Project::with('detail')->where('slug', $slug)->firstOrFail();
+        $project = Project::with(['detail', 'media'])->where('slug', $slug)->firstOrFail();
 
         return new ProjectResource($project);
     }
