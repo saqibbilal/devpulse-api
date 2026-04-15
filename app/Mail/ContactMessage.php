@@ -26,11 +26,17 @@ class ContactMessage extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('contact@mail.mbilal.ca', 'DevPulse Portfolio'),
-            // Using the data directly from the model instance
+        // Pulls MAIL_FROM_ADDRESS and MAIL_FROM_NAME from your config
+            from: new Address(
+                config('mail.from.address'),
+                config('mail.from.name')
+            ),
+
+            // Keeps the reply-to as the person who filled out the form
             replyTo: [
                 new Address($this->contact->email, $this->contact->name)
             ],
+
             subject: "Portfolio Inquiry from " . $this->contact->name,
         );
     }

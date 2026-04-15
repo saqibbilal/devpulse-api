@@ -111,8 +111,11 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'devpulse@mbilal.ca'),
+        'name' => env('MAIL_FROM_NAME', 'DevPulse Portfolio'),
     ],
+
+// Add this line here:
+    'to_address' => env('MAIL_TO_ADDRESS', 'saqib@mbilal.ca'),
 
 ];
