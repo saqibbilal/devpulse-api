@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Mail;
 
 use App\Models\Contact;
@@ -17,7 +18,7 @@ class ContactMessage extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        public Contact $contact // <--- 2. TYPE HINT THE MODEL
+        public Contact $contact
     ) {}
 
     /**
@@ -26,11 +27,19 @@ class ContactMessage extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('contact@mail.mbilal.ca', 'Portfolio Contact'),
-            // Using the data directly from the model instance
+        // The sender remains your domain's mail service
+            from: new Address('contact@mail.mbilal.ca', 'DevPulse Portfolio'),
+
+            // This ensures the inquiry is sent directly to your new email
+            to: [
+                new Address('saqib@mbilal.ca', 'Saqib Bilal')
+            ],
+
+            // Allows you to hit 'Reply' and respond directly to the sender
             replyTo: [
                 new Address($this->contact->email, $this->contact->name)
             ],
+
             subject: "Portfolio Inquiry from " . $this->contact->name,
         );
     }
@@ -42,11 +51,10 @@ class ContactMessage extends Mailable
     {
         return new Content(
             markdown: 'emails.contact',
-            // Data passed here is available in your Blade view as $name, $email, etc.
             with: [
                 'name'  => $this->contact->name,
                 'email' => $this->contact->email,
-                'body'  => $this->contact->body, // Matches your DB 'body' column
+                'body'  => $this->contact->body,
             ],
         );
     }
