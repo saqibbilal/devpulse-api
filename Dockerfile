@@ -2,8 +2,18 @@
 FROM php:8.4-fpm-alpine AS vendor
 WORKDIR /var/www/html
 
-# We only ignore the two problematic extensions that require heavy compilation.
-# We keep pdo_pgsql and exif checks active for safety.
+RUN apk add --no-cache \
+    libpq-dev \
+    icu-dev \
+    libzip-dev
+
+# IMPORTANT: install PHP extensions needed for Composer validation
+RUN docker-php-ext-install \
+    pdo_pgsql \
+    exif \
+    intl \
+    zip
+
 COPY composer.json composer.lock ./
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
