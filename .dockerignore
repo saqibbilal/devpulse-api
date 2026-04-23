@@ -1,7 +1,37 @@
+# Version Control
 .git
+.gitignore
+
+# Environment & Secrets
 .env
-/vendor
-/node_modules
+.env.*
+! .env.example
 /storage/*.key
+
+# Dependencies (Crucial to prevent local/container conflicts)
+vendor
+node_modules
+
+# Laravel/PHP Specific
 .phpunit.result.cache
+.phpunit.cache
+tests
+auth.json
+
+# Docker & CI
+Dockerfile
+docker/
+.github
 Docker-terminal-history
+
+# Logs and Temp
+storage/logs/*
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+
+# System/IDE Junk
+.idea
+.vscode
+.DS_Store
+Thumbs.db
