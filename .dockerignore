@@ -5,32 +5,30 @@
 # Environment & Secrets
 .env
 .env.*
-! .env.example
+!.env.example
 /storage/*.key
 
-# Dependencies (Crucial to prevent local/container conflicts)
+# Dependencies
 vendor
 node_modules
 
-# Laravel/PHP Specific
+# Laravel/PHP
 .phpunit.result.cache
 .phpunit.cache
 tests
 auth.json
 
-# Docker & CI
-Dockerfile
-docker/
+# CI
 .github
 Docker-terminal-history
 
-# Logs and Temp
+# Logs
 storage/logs/*
 storage/framework/cache/data/*
 storage/framework/sessions/*
 storage/framework/views/*
 
-# System/IDE Junk
+# System/IDE
 .idea
 .vscode
 .DS_Store
